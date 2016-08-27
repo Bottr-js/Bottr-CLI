@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 var program = require('commander')
 var childProcess = require('child_process')
 var readline = require('readline')
@@ -66,8 +67,8 @@ program
   startClient()
 
   process.on('exit', function () {
-      child.kill();
-  });
+      child.kill()
+  })
 });
 
 program
