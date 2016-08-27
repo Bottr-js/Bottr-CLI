@@ -7,7 +7,7 @@ var color = require('ansi-color').set
 
 function startServer() {
   console.log('Started bot...')
-  childProcess.exec('node .');
+  return childProcess.exec('node .');
 }
 
 function console_out(rl, msg) {
@@ -59,11 +59,15 @@ program
 program
 .command('test')
 .action(function () {
-  startServer()
+  var child = startServer()
   //- Detect bots and server
   //- Ask server to print it out so CLI can detect it
   //- Ask user which one to connect to
   startClient()
+
+  process.on('exit', function () {
+      child.kill();
+  });
 });
 
 program
