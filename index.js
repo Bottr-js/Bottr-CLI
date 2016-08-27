@@ -18,13 +18,16 @@ function console_out(rl, msg) {
   rl.prompt(true);
 }
 
-function startClient() {
+function startClient(url) {
 
-  var socket = io('http://localhost:3000/scrabble-dictionary')
+  //FIXME: Generate ideal URL based on arguemnts
+  var connectionUrl = url || 'http://localhost:3000/'
+  console.log('Connected to ' + connectionUrl)
+
+  var socket = io(connectionUrl)
   var rl = readline.createInterface(process.stdin, process.stdout);
 
   rl.on('line', function (line) {
-    // - FIXME: Prompt user on ctrl+c
     socket.emit('message', { text: line });
     rl.prompt(true);
   });
@@ -47,26 +50,23 @@ program
 program
 .command('init')
 .action(function () {
-  //- Implement package constructor
+  //FIXME: Implement package constructor
   console.log('init')
 })
 
 program
 .command('start')
 .action(function () {
-  // - Error when bot couldnt be started
+  //FIXME: Error when bot couldnt be started
   startServer()
 })
 
 program
 .command('test')
-.action(function () {
+.option('-u, --url <url>', 'The URL for the bot')
+.action(function (flags) {
   var child = startServer()
-  //- Detect bots and server
-  //- Ask server to print it out so CLI can detect it
-  //- Ask user which one to connect to
-  // - Error when bot couldnt be started
-  startClient()
+  startClient(flags.url)
 
   process.on('exit', function () {
       child.kill()
