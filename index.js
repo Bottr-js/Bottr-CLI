@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 var program = require('commander');
+var validCommand = true
 
 program
 .version('0.0.1')
@@ -23,7 +24,7 @@ program
 });
 
 program
-.action(function(){
+.action(function (cmd, env) {
   program.outputHelp()
 });
 
