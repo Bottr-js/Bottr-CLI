@@ -54,6 +54,7 @@ program
 program
 .command('start')
 .action(function () {
+  // - Error when bot couldnt be started
   startServer()
 });
 
@@ -64,6 +65,7 @@ program
   //- Detect bots and server
   //- Ask server to print it out so CLI can detect it
   //- Ask user which one to connect to
+  // - Error when bot couldnt be started
   startClient()
 
   process.on('exit', function () {
