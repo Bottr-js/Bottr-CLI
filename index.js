@@ -7,6 +7,25 @@ var io = require('socket.io-client')
 var fs = require('fs');
 var color = require('ansi-color').set
 
+function init() {
+  fs.readFile(__dirname + 'templates/package.json', (err, data) => {
+    if (err) throw err;
+
+    fs.writeFile('package.json', data, function(err) {
+      if (err) throw err;
+      exec('npm install');
+    })
+  });
+
+  fs.readFile(__dirname + 'templates/index.js', (err, data) => {
+    if (err) throw err;
+
+    fs.writeFile('index.js', data, function(err) {
+      if (err) throw err;
+    })
+  });
+}
+
 function startServer() {
   console.log('Started bot...')
   return childProcess.exec('node .', function (error, stdout, stderr) {
@@ -52,8 +71,7 @@ program
 program
 .command('init')
 .action(function () {
-  //FIXME: Implement package constructor
-  console.log('init')
+  init()
 })
 
 program

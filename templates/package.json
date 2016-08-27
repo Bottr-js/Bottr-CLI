@@ -1,0 +1,15 @@
+{
+  "name": "your-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "pozi": "^0.2.1"
+  },
+  "scripts": {
+    "start": "pozi-cli start",
+    "test": "pozi-cli test"
+  },
+  "author": "",
+  "license": "ISC"
+}
