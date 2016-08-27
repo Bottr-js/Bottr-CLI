@@ -65,6 +65,7 @@ program
 .command('test')
 .option('-u, --url <url>', 'The URL for the bot')
 .action(function (flags) {
+  //FIXME: Error when bot couldnt be started
   var child = startServer()
   startClient(flags.url)
 
