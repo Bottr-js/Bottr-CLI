@@ -8,7 +8,9 @@ var color = require('ansi-color').set
 
 function startServer() {
   console.log('Started bot...')
-  return childProcess.exec('node .');
+  return childProcess.exec('node .', function (error, stdout, stderr) {
+    process.exit(1)
+  });
 }
 
 function console_out(rl, msg) {
@@ -20,7 +22,6 @@ function console_out(rl, msg) {
 
 function startClient(url) {
 
-  //FIXME: Generate ideal URL based on arguemnts
   var connectionUrl = url || 'http://localhost:3000/'
   console.log('Connected to ' + connectionUrl)
 
@@ -57,7 +58,6 @@ program
 program
 .command('start')
 .action(function () {
-  //FIXME: Error when bot couldnt be started
   startServer()
 })
 
