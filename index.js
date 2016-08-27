@@ -49,14 +49,14 @@ program
 .action(function () {
   //- Implement package constructor
   console.log('init')
-});
+})
 
 program
 .command('start')
 .action(function () {
   // - Error when bot couldnt be started
   startServer()
-});
+})
 
 program
 .command('test')
@@ -71,11 +71,11 @@ program
   process.on('exit', function () {
       child.kill()
   })
-});
+})
 
 program
 .action(function (cmd, env) {
   program.outputHelp()
-});
+})
 
 program.parse(process.argv);
