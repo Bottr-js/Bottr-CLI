@@ -4,6 +4,7 @@ var program = require('commander')
 var childProcess = require('child_process')
 var readline = require('readline')
 var io = require('socket.io-client')
+var fs = require('fs');
 var color = require('ansi-color').set
 
 function startServer() {
