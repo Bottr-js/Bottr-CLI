@@ -19,13 +19,17 @@ function console_out(rl, msg) {
 
 function startClient() {
 
-  var socket = io('http://localhost:3000/echobot')
+  var socket = io('http://localhost:3000/scrabble-dictionary')
   var rl = readline.createInterface(process.stdin, process.stdout);
 
   rl.on('line', function (line) {
     // - FIXME: Prompt user on ctrl+c
     socket.emit('message', { text: line });
     rl.prompt(true);
+  });
+
+  rl.on('SIGINT', () => {
+    process.exit(0)
   });
 
   socket.on('message', function (data) {
@@ -57,7 +61,7 @@ program
 .action(function () {
   startServer()
   //- Detect bots and server
-  //- Print it out so CLI can detect it
+  //- Ask server to print it out so CLI can detect it
   //- Ask user which one to connect to
   startClient()
 });
