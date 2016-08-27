@@ -8,16 +8,18 @@ var fs = require('fs');
 var color = require('ansi-color').set
 
 function init() {
-  fs.readFile(__dirname + 'templates/package.json', (err, data) => {
+  fs.readFile(__dirname + '/templates/package.json', (err, data) => {
     if (err) throw err;
 
     fs.writeFile('package.json', data, function(err) {
       if (err) throw err;
-      exec('npm install');
+      childProcess.exec('npm install', function (error, stdout, stderr) {
+        process.exit(1)
+      });
     })
   });
 
-  fs.readFile(__dirname + 'templates/index.js', (err, data) => {
+  fs.readFile(__dirname + '/templates/index.js', (err, data) => {
     if (err) throw err;
 
     fs.writeFile('index.js', data, function(err) {
