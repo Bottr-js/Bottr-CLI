@@ -1,6 +1,39 @@
 #!/usr/bin/env node
-var program = require('commander');
-var validCommand = true
+var program = require('commander')
+var childProcess = require('child_process')
+var readline = require('readline')
+var io = require('socket.io-client')
+var color = require('ansi-color').set
+
+function startServer() {
+  console.log('Started bot...')
+  childProcess.exec('node .');
+}
+function console_out(rl, msg) {
+  process.stdout.clearLine();
+  process.stdout.cursorTo(0);
+  console.log(msg);
+  rl.prompt(true);
+}
+
+function startClient() {
+
+  var socket = io('http://localhost:3000/echobot')
+  var rl = readline.createInterface(process.stdin, process.stdout);
+
+  rl.on('line', function (line) {
+    // - FIXME: Prompt user on ctrl+c
+    socket.emit('message', { text: line });
+    rl.prompt(true);
+  });
+
+  socket.on('message', function (data) {
+      var leader = color("<bot> ", "green");
+      console_out(rl, leader + data.text);
+  });
+
+  rl.prompt(true);
+}
 
 program
 .version('0.0.1')
@@ -8,19 +41,24 @@ program
 program
 .command('init')
 .action(function () {
-   console.log('init')
+  //- Implement package constructor
+  console.log('init')
 });
 
 program
 .command('start')
 .action(function () {
-   console.log('start')
+  startServer()
 });
 
 program
 .command('test')
 .action(function () {
-   console.log('test')
+  startServer()
+  //- Detect bots and server
+  //- Print it out so CLI can detect it
+  //- Ask user which one to connect to
+  startClient()
 });
 
 program
