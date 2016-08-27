@@ -4,7 +4,8 @@
   "description": "The command line tool for Pozi",
   "main": "index.js",
   "dependencies": {
-    "commander": "^2.9.0"
+    "commander": "^2.9.0",
+    "dotenv": "^2.0.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -19,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/Pozi-js/Pozi-CLI/issues"
   },
-  "homepage": "https://github.com/Pozi-js/Pozi-CLI#readme"
+  "homepage": "https://github.com/Pozi-js/Pozi-CLI#readme",
+  "bin": {
+    "pozi-cli": "./index.js"
+  }
 }
