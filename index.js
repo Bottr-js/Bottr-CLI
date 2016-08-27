@@ -9,6 +9,7 @@ function startServer() {
   console.log('Started bot...')
   childProcess.exec('node .');
 }
+
 function console_out(rl, msg) {
   process.stdout.clearLine();
   process.stdout.cursorTo(0);
