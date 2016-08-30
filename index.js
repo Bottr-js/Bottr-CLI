@@ -8,22 +8,34 @@ var fs = require('fs');
 var color = require('ansi-color').set
 
 function init() {
-  fs.readFile(__dirname + '/templates/package.json', (err, data) => {
-    if (err) throw err;
 
-    fs.writeFile('package.json', data, function(err) {
-      if (err) throw err;
-      childProcess.exec('npm install', function (error, stdout, stderr) {
-        process.exit(1)
-      });
-    })
-  });
+  console.log('Creating new bot...')
 
   fs.readFile(__dirname + '/templates/index.js', (err, data) => {
     if (err) throw err;
 
+    console.log('Copying index.js...')
+
     fs.writeFile('index.js', data, function(err) {
       if (err) throw err;
+
+      console.log('Copied index.js...')
+    })
+  });
+
+  fs.readFile(__dirname + '/templates/package.json', (err, data) => {
+    if (err) throw err;
+
+    console.log('Copying Package.json...')
+
+    fs.writeFile('package.json', data, function(err) {
+      if (err) throw err;
+
+      console.log('Copied Package.json...')
+      console.log('Installing Dependencies...')
+
+      var exec = require('child_process').exec;
+      child = exec('npm install').stderr.pipe(process.stderr)
     })
   });
 }
