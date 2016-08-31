@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+require('dotenv').config()
+
 var program = require('commander')
 var childProcess = require('child_process')
 var readline = require('readline')
