@@ -9,6 +9,13 @@ var io = require('socket.io-client')
 var fs = require('fs');
 var color = require('ansi-color').set
 
+function startCommand(command, callback) {
+  var child = childProcess.exec(command, callback)
+  child.stdout.pipe(process.stdout)
+  child.stderr.pipe(process.stderr)
+  return child
+}
+
 function init() {
 
   console.log('Creating new bot...')
@@ -36,17 +43,15 @@ function init() {
       console.log('Copied Package.json...')
       console.log('Installing Dependencies...')
 
-      var exec = require('child_process').exec;
-      child = exec('npm install').stderr.pipe(process.stderr)
+      startCommand('npm install')
     })
   });
 }
 
 function startServer() {
-  console.log('Started bot...')
-  return childProcess.exec('node .', function (error, stdout, stderr) {
+  return startCommand('node .', function (error, stdout, stderr) {
     process.exit(1)
-  });
+  })
 }
 
 function console_out(rl, msg) {
