@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "pozi": "^0.2.1"
+    "bottr": "^0.1.0"
   },
   "scripts": {
-    "start": "pozi-cli start",
-    "test": "pozi-cli test"
+    "start": "bottr-cli start",
+    "test": "bottr-cli test"
   },
   "author": "",
   "license": "ISC"

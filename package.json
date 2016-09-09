@@ -1,7 +1,7 @@
 {
-  "name": "pozi-cli",
-  "version": "1.0.0",
-  "description": "The command line tool for Pozi",
+  "name": "Bottr-cli",
+  "version": "0.1.0",
+  "description": "The command line tool for Bottr",
   "main": "index.js",
   "dependencies": {
     "ansi-color": "^0.2.1",
@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Pozi-js/Pozi-CLI.git"
+    "url": "git+https://github.com/Bottr-js/Bottr-CLI.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Pozi-js/Pozi-CLI/issues"
+    "url": "https://github.com/Bottr-js/Bottr-CLI/issues"
   },
-  "homepage": "https://github.com/Pozi-js/Pozi-CLI#readme",
+  "homepage": "https://github.com/Bottr-js/Bottr-CLI#readme",
   "bin": {
-    "pozi-cli": "./index.js"
+    "bottr-cli": "./index.js"
   }
 }
