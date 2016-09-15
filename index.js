@@ -69,9 +69,14 @@ program
 .command('start')
 .action(function () {
   startServer()
+  // - Start Mac, Mobile
 })
 
-// - Build Mac, Mobile
+program
+.command('build')
+.action(function () {
+  // - Build Mac, Mobile
+})
 
 program
 .action(function (cmd, env) {
