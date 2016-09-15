@@ -1,13 +1,8 @@
 #!/usr/bin/env node
 
-require('dotenv').config()
-
 var program = require('commander')
 var childProcess = require('child_process')
-var readline = require('readline')
-var io = require('socket.io-client')
 var fs = require('fs');
-var color = require('ansi-color').set
 
 function startCommand(command, callback) {
   var child = childProcess.exec(command, callback)
@@ -61,31 +56,6 @@ function console_out(rl, msg) {
   rl.prompt(true);
 }
 
-function startClient(url) {
-
-  var connectionUrl = url || 'http://localhost:3000/'
-  console.log('Connected to ' + connectionUrl)
-
-  var socket = io(connectionUrl)
-  var rl = readline.createInterface(process.stdin, process.stdout);
-
-  rl.on('line', function (line) {
-    socket.emit('message', { text: line });
-    rl.prompt(true);
-  });
-
-  rl.on('SIGINT', () => {
-    process.exit(0)
-  });
-
-  socket.on('message', function (data) {
-      var leader = color("<bot> ", "green");
-      console_out(rl, leader + data.text);
-  });
-
-  rl.prompt(true);
-}
-
 program
 .version('0.0.1')
 
@@ -99,18 +69,6 @@ program
 .command('start')
 .action(function () {
   startServer()
-})
-
-program
-.command('test')
-.option('-u, --url <url>', 'The URL for the bot')
-.action(function (flags) {
-  var child = startServer()
-  startClient(flags.url)
-
-  process.on('exit', function () {
-      child.kill()
-  })
 })
 
 program

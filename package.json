@@ -4,10 +4,7 @@
   "description": "The command line tool for Bottr",
   "main": "index.js",
   "dependencies": {
-    "ansi-color": "^0.2.1",
-    "commander": "^2.9.0",
-    "dotenv": "^2.0.0",
-    "socket.io-client": "^1.4.8"
+    "commander": "^2.9.0"
   },
   "devDependencies": {},
   "scripts": {
