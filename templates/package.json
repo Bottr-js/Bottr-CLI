@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "bottr": "^0.1.0"
+    "bottr": "^0.1.0",
+    "bottr-app": "^0.2.0"
   },
   "scripts": {
-    "start": "bottr-cli start",
-    "test": "bottr-cli test"
+    "start": "bottr-cli start"
   },
   "author": "",
   "license": "ISC"

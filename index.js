@@ -57,7 +57,7 @@ function console_out(rl, msg) {
 }
 
 program
-.version('0.0.1')
+.version('0.1.0') // Read from Package.json
 
 program
 .command('init')
@@ -70,6 +70,8 @@ program
 .action(function () {
   startServer()
 })
+
+// - Build Mac, Mobile
 
 program
 .action(function (cmd, env) {
