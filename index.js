@@ -69,6 +69,7 @@ program
 .command('start')
 .action(function () {
   startServer()
+  console.log('Server is running on http://localhost:3000')
   // - Start Mac, Mobile
 })
 
