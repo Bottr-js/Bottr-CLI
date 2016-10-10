@@ -3,6 +3,7 @@
 var program = require('commander')
 var childProcess = require('child_process')
 var fs = require('fs');
+var port = process.env.port || 3000;
 
 function startCommand(command, callback) {
   var child = childProcess.exec(command, callback)
@@ -69,7 +70,7 @@ program
 .command('start')
 .action(function () {
   startServer()
-  console.log('Server is running on http://localhost:' + process.env.PORT)
+  console.log('Server is running on http://localhost:' + port)
   // - Start Mac, Mobile
 })
 
