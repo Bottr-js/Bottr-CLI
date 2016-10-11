@@ -71,13 +71,6 @@ program
 .action(function () {
   startServer()
   console.log('Server is running on http://localhost:' + port)
-  // - Start Mac, Mobile
-})
-
-program
-.command('build')
-.action(function () {
-  // - Build Mac, Mobile
 })
 
 program
