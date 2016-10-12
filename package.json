@@ -4,10 +4,12 @@
   "description": "The command line tool for Bottr",
   "main": "index.js",
   "dependencies": {
-    "commander": "^2.9.0"
+    "commander": "^2.9.0",
+    "eslint": "^3.7.1"
   },
   "devDependencies": {},
   "scripts": {
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,5 +25,27 @@
   "bin": {
     "bottr-cli": "./index.js",
     "bottr": "./index.js"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+      "indent": [
+        "error",
+        2
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "never"
+      ],
+      "no-console": 0,
+      "no-unused-vars": 0
+    }
   }
 }
