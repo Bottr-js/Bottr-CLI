@@ -2,8 +2,8 @@
 
 var program = require('commander')
 var childProcess = require('child_process')
-var fs = require('fs');
-var port = process.env.port || 3000;
+var fs = require('fs')
+var port = process.env.port || 3000
 
 function startCommand(command, callback) {
   var child = childProcess.exec(command, callback)
@@ -16,32 +16,32 @@ function init() {
 
   console.log('Creating new bot...')
 
-  fs.readFile(__dirname + '/templates/index.js', (err, data) => {
-    if (err) throw err;
+  fs.readFile(__dirname + '/templates/index.js', function(err, data) {
+    if (err) throw err
 
     console.log('Copying index.js...')
 
     fs.writeFile('index.js', data, function(err) {
-      if (err) throw err;
+      if (err) throw err
 
       console.log('Copied index.js...')
     })
-  });
+  })
 
-  fs.readFile(__dirname + '/templates/package.json', (err, data) => {
-    if (err) throw err;
+  fs.readFile(__dirname + '/templates/package.json', function(err, data) {
+    if (err) throw err
 
     console.log('Copying Package.json...')
 
     fs.writeFile('package.json', data, function(err) {
-      if (err) throw err;
+      if (err) throw err
 
       console.log('Copied Package.json...')
       console.log('Installing Dependencies...')
 
       startCommand('npm install')
     })
-  });
+  })
 }
 
 function startServer() {
@@ -51,31 +51,31 @@ function startServer() {
 }
 
 function console_out(rl, msg) {
-  process.stdout.clearLine();
-  process.stdout.cursorTo(0);
-  console.log(msg);
-  rl.prompt(true);
+  process.stdout.clearLine()
+  process.stdout.cursorTo(0)
+  console.log(msg)
+  rl.prompt(true)
 }
 
 program
-.version('0.1.0') // Read from Package.json
+  .version('0.1.0') // Read from Package.json
 
 program
-.command('init')
-.action(function () {
-  init()
-})
+  .command('init')
+  .action(function() {
+    init()
+  })
 
 program
-.command('start')
-.action(function () {
-  startServer()
-  console.log('Server is running on http://localhost:' + port)
-})
+  .command('start')
+  .action(function() {
+    startServer()
+    console.log('Server is running on http://localhost:' + port)
+  })
 
 program
-.action(function (cmd, env) {
-  program.outputHelp()
-})
+  .action(function(cmd, env) {
+    program.outputHelp()
+  })
 
-program.parse(process.argv);
+program.parse(process.argv)
