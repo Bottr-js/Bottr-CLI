@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+require('dotenv').config()
+
 var program = require('commander')
 var childProcess = require('child_process')
 var fs = require('fs')
@@ -46,7 +48,7 @@ function init() {
 }
 
 function startServer() {
-    return startCommand('node -r dotenv/config --use_strict --harmony .', function (error, stdout, stderr) {
+    return startCommand('node --use_strict --harmony .', function (error, stdout, stderr) {
         process.exit(1)
     })
 }
