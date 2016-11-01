@@ -4,6 +4,7 @@ var program = require('commander')
 var childProcess = require('child_process')
 var fs = require('fs')
 var port = process.env.port || 3000
+var pjson = require('./package.json')
 
 function startCommand(command, callback) {
   var child = childProcess.exec(command, callback)
@@ -58,7 +59,7 @@ function console_out(rl, msg) {
 }
 
 program
-  .version('0.1.0') // Read from Package.json
+  .version(pjson.version)
 
 program
   .command('init')
