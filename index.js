@@ -46,9 +46,9 @@ function init() {
 }
 
 function startServer() {
-  return startCommand('node -r dotenv/config --use_strict --harmony .', function (error, stdout, stderr) {
-    process.exit(1)
-  })
+    return startCommand('node -r dotenv/config --use_strict --harmony .', function (error, stdout, stderr) {
+        process.exit(1)
+    })
 }
 
 function console_out(rl, msg) {
