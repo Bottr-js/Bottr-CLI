@@ -1,15 +1,15 @@
 #!/usr/bin/env node
-var fs = require('fs')
+const fs = require('fs')
 
 loadEnvFile()
 
-var program = require('commander')
-var childProcess = require('child_process')
-var port = process.env.port || 3000
-var pjson = require('./package.json')
+const program = require('commander')
+const childProcess = require('child_process')
+const port = process.env.port || 3000
+const pjson = require('./package.json')
 
 function startCommand(command, callback) {
-  var child = childProcess.exec(command, callback)
+  const child = childProcess.exec(command, callback)
   child.stdout.pipe(process.stdout)
   child.stderr.pipe(process.stderr)
   return child
