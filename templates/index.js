@@ -1,6 +1,6 @@
-var Bottr = require('bottr')
-var BottrApp = require('bottr-app')
+const Bottr = require('bottr')
+const BottrApp = require('bottr-app')
+const bot = new Bottr.Bot()
 
-var bot = new Bottr.Bot()
 bot.use(new BottrApp())
 bot.listen()
