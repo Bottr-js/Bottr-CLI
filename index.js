@@ -31,6 +31,18 @@ function init() {
     })
   })
 
+  fs.readFile(__dirname + '/templates/.env', function(err, data) {
+    if (err) throw err
+
+    console.log('Copying .env...')
+
+    fs.writeFile('.env', data, function(err) {
+      if (err) throw err
+
+      console.log('Copied .env...')
+    })
+  })
+
   fs.readFile(__dirname + '/templates/package.json', function(err, data) {
     if (err) throw err
 
