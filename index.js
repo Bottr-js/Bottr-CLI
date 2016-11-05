@@ -48,9 +48,9 @@ function init() {
 }
 
 function startServer() {
-    return startCommand('node --use_strict --harmony .', function (error, stdout, stderr) {
-        process.exit(1)
-    })
+  return startCommand('node --use_strict --harmony .', function (error, stdout, stderr) {
+    process.exit(1)
+  })
 }
 
 function console_out(rl, msg) {
