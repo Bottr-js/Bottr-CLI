@@ -1,10 +1,10 @@
 #!/usr/bin/env node
+var fs = require('fs')
 
-require('dotenv').config()
+loadEnvFile()
 
 var program = require('commander')
 var childProcess = require('child_process')
-var fs = require('fs')
 var port = process.env.port || 3000
 var pjson = require('./package.json')
 
@@ -31,18 +31,6 @@ function init() {
     })
   })
 
-  fs.readFile(__dirname + '/templates/.env', function(err, data) {
-    if (err) throw err
-
-    console.log('Copying .env...')
-
-    fs.writeFile('.env', data, function(err) {
-      if (err) throw err
-
-      console.log('Copied .env...')
-    })
-  })
-
   fs.readFile(__dirname + '/templates/package.json', function(err, data) {
     if (err) throw err
 
@@ -56,6 +44,27 @@ function init() {
 
       startCommand('npm install')
     })
+  })
+}
+
+function loadEnvFile() {
+  fs.readFile(__dirname + '.env', function(err, data) {
+    if (err) {
+      fs.readFile(__dirname + '/templates/.env', function(err, data) {
+        if (err) throw err
+
+        console.log('Copying .env...')
+
+        fs.writeFile('.env', data, function(err) {
+          if (err) throw err
+
+          console.log('Copied .env...')
+          require('dotenv').config()
+        })
+      })
+    } else {
+      require('dotenv').config()
+    }
   })
 }
 
