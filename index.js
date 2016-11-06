@@ -1,15 +1,15 @@
 #!/usr/bin/env node
+const fs = require('fs')
 
-require('dotenv').config()
+loadEnvFile()
 
-var program = require('commander')
-var childProcess = require('child_process')
-var fs = require('fs')
-var port = process.env.port || 3000
-var pjson = require('./package.json')
+const program = require('commander')
+const childProcess = require('child_process')
+const port = process.env.port || 3000
+const pjson = require('./package.json')
 
 function startCommand(command, callback) {
-  var child = childProcess.exec(command, callback)
+  const child = childProcess.exec(command, callback)
   child.stdout.pipe(process.stdout)
   child.stderr.pipe(process.stderr)
   return child
@@ -19,24 +19,24 @@ function init() {
 
   console.log('Creating new bot...')
 
-  fs.readFile(__dirname + '/templates/index.js', function(err, data) {
+  fs.readFile(__dirname + '/templates/index.js', (err, data) => {
     if (err) throw err
 
     console.log('Copying index.js...')
 
-    fs.writeFile('index.js', data, function(err) {
+    fs.writeFile('index.js', data, (err) => {
       if (err) throw err
 
       console.log('Copied index.js...')
     })
   })
 
-  fs.readFile(__dirname + '/templates/package.json', function(err, data) {
+  fs.readFile(__dirname + '/templates/package.json', (err, data) => {
     if (err) throw err
 
     console.log('Copying Package.json...')
 
-    fs.writeFile('package.json', data, function(err) {
+    fs.writeFile('package.json', data, (err) => {
       if (err) throw err
 
       console.log('Copied Package.json...')
@@ -47,10 +47,29 @@ function init() {
   })
 }
 
+function loadEnvFile() {
+  fs.readFile(__dirname + '.env', (err, data) => {
+    if (err) {
+      fs.readFile(__dirname + '/templates/.env', (err, data) => {
+        if (err) throw err
+
+        console.log('Copying .env...')
+
+        fs.writeFile('.env', data, (err) => {
+          if (err) throw err
+
+          console.log('Copied .env...')
+          require('dotenv').config()
+        })
+      })
+    } else {
+      require('dotenv').config()
+    }
+  })
+}
+
 function startServer() {
-    return startCommand('node --use_strict --harmony .', function (error, stdout, stderr) {
-        process.exit(1)
-    })
+  return startCommand('node --use_strict --harmony .',(error, stdout, stderr) => process.exit(1))
 }
 
 function console_out(rl, msg) {
@@ -65,20 +84,16 @@ program
 
 program
   .command('init')
-  .action(function() {
-    init()
-  })
+  .action(() => init())
 
 program
   .command('start')
-  .action(function() {
+  .action(() => {
     startServer()
-    console.log('Server is running on http://localhost:' + port)
+    console.log(`Server is running on http://localhost: ${port}`)
   })
 
 program
-  .action(function(cmd, env) {
-    program.outputHelp()
-  })
+  .action((cmd, env) => program.outputHelp())
 
 program.parse(process.argv)
