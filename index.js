@@ -59,11 +59,11 @@ function loadEnvFile() {
           if (err) throw err
 
           console.log('Copied .env...')
-          require('dotenv').config()
+          require('dotenv').config({silent: true})
         })
       })
     } else {
-      require('dotenv').config()
+      require('dotenv').config({silent: true})
     }
   })
 }
